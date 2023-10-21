@@ -1,0 +1,141 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>assignment</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+
+    body {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .item {
+      display: none;
+      text-align: center;
+      font-size: 10rem;
+      color: brown;
+      transition: 0.5s;
+      transform: rotate(0deg);
+      /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+      animation: ani 0.8s ease-in alternate-reverse;
+      /* animation-direction: alternate; */
+    }
+
+    @keyframes ani {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    h2 {
+      color: brown;
+    }
+
+    .item:hover {
+      transform: scale(1.05, 1.05);
+    }
+
+    button {
+      width: 120px;
+      height: 50px;
+      border-radius: 5px;
+      border: 1px solid brown;
+      background: white;
+      color: black;
+      font-size: 1.1rem;
+      color: brown;
+      font-weight: bolder;
+      cursor: pointer;
+      margin: 1rem;
+    }
+
+    button:disabled {
+      border: 1px solid gray;
+      color: #a8a3a3;
+      cursor: auto;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="fullname">
+    <h2>Hasnain </h2>
+  </div>
+
+  <ul>
+    <li class="item">H</li>
+    <li class="item">A</li>
+    <li class="item">S</li>
+    <li class="item">N</li>
+    <li class="item">A</li>
+    <li class="item">I</li>
+    <li class="item">N</li>
+  </ul>
+
+
+  <div class="buttons">
+    <button id="previus" disabled>&leftarrow;Previus</button>
+    <button id="next">Next &rightarrow;</button>
+  </div>
+
+  <script>
+    let li = document.querySelectorAll(".item")
+    let previus = document.getElementById("previus")
+    let next = document.getElementById("next")
+
+
+
+    let counter = 0;
+    li[counter].style.display = "inherit"
+
+
+    next.addEventListener("click", e => {
+      previus.disabled = false
+      if (counter !== li.length - 1) {
+        counter = counter + 1
+        console.log(counter)
+        li[counter - 1].style.display = "none"
+        li[counter].style.display = "inherit"
+      } else {
+        e.target.disabled = true
+      }
+    })
+
+
+    previus.addEventListener("click", e => {
+      next.disabled = false
+      if (counter < 1) {
+        e.target.disabled = true
+        return
+      } else {
+        counter = counter - 1
+        li[counter].style.display = "inherit"
+        li[counter + 1].style.display = "none"
+      }
+    })
+    
+  </script>
+
+
+
+</body>
+
+</html>
